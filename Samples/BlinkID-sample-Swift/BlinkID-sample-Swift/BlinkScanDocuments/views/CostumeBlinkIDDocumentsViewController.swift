@@ -1,0 +1,225 @@
+//
+//  CostumeBlinkIDDocumentsViewController.swift
+//  BlinkID-sample-Swift
+//
+//  Created by Emmanuel Zambrano Quitian on 4/30/24.
+//  Copyright © 2024 Dino. All rights reserved.
+//
+
+import UIKit
+import BlinkID
+
+protocol CostumeBlinkIDDocumentsProtocol {
+    func didTapClose()
+    func didFinishScanning(customData: BlinkIDEntity)
+}
+class CostumeBlinkIDDocumentsViewController:
+    MBCustomOverlayViewController,
+    MBScanningRecognizerRunnerViewControllerDelegate,
+    MBFirstSideFinishedRecognizerRunnerViewControllerDelegate
+{
+    
+    var delegate: CostumeBlinkIDDocumentsProtocol?
+    private var showingBack = false
+
+    
+    private let InstructionsLabel: UILabel =  {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textAlignment = .center
+        view.font.withSize(14)
+        view.numberOfLines = 0
+        view.textColor = .white
+        view.text = "Centra y toma una foto del frente de tu identificación oficial"
+        view.backgroundColor = .black.withAlphaComponent(0.3)
+        return view
+    }()
+    
+    private let closeViewButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 50, y: 50, width: 20, height: 20))
+        button.setTitle("X", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemGreen
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action:  #selector(closeView), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let TomarFotoButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Escaneando", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemGreen
+        button.layer.cornerRadius = 24
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let OpenGalleryButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Abrir galería", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 24
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 3
+        button.setImage(UIImage(systemName: "photo"), for: .normal)
+        button.imageEdgeInsets.left = -5
+        button.addTarget(self, action:  #selector(openGallery), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let ScanArea: UIView = {
+        let view = UIView()
+        view.layer.borderWidth = 3
+        view.layer.borderColor = UIColor.purple.cgColor
+        view.layer.cornerRadius = 24
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let INEIFrontImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "ineSample")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        view.contentMode = .scaleAspectFit
+        view.layer.cornerRadius = 30
+        return view
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        super.scanningRecognizerRunnerViewControllerDelegate = self
+        super.metadataDelegates.firstSideFinishedRecognizerRunnerViewControllerDelegate = self
+        viewHierarchy()
+        viewConstraints()
+    }
+    
+    private func viewHierarchy() {
+        view.addSubview(InstructionsLabel)
+        view.addSubview(TomarFotoButton)
+        view.addSubview(OpenGalleryButton)
+        view.addSubview(ScanArea)
+        view.addSubview(INEIFrontImage)
+    }
+    
+    private func viewConstraints() {
+        instructionsLabelConstraints()
+        tomarFotoButtonConstraints()
+        abrirGaleriaButtonConstraints()
+        scanAreaConstraints()
+        INEImageConstraints()
+    }
+    
+    private func instructionsLabelConstraints() {
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            InstructionsLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 118),
+            InstructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            InstructionsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+        ])
+    }
+    
+    private func tomarFotoButtonConstraints() {
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            TomarFotoButton.heightAnchor.constraint(equalToConstant: 48),
+            TomarFotoButton.widthAnchor.constraint(equalToConstant: 204),
+            TomarFotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            TomarFotoButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -88)
+        ])
+        
+    }
+    
+    private func abrirGaleriaButtonConstraints(){
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            OpenGalleryButton.heightAnchor.constraint(equalToConstant: 48),
+            OpenGalleryButton.widthAnchor.constraint(equalToConstant: 150),
+            OpenGalleryButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            OpenGalleryButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -32)
+        ])
+        
+    }
+    
+    private func scanAreaConstraints(){
+        NSLayoutConstraint.activate([
+            ScanArea.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            ScanArea.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            ScanArea.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            ScanArea.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            ScanArea.heightAnchor.constraint(equalTo: ScanArea.widthAnchor, multiplier: 1/1.586)
+        ])
+        
+        
+    }
+    
+    private func INEImageConstraints() {
+        NSLayoutConstraint.activate([
+            INEIFrontImage.heightAnchor.constraint(equalToConstant: 100),
+            INEIFrontImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            INEIFrontImage.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    @objc private func openGallery() {
+        let galleryController = BlinkIDDocumentsFromGalleyViewController()
+        
+        galleryController.delegate = self
+        self.present(galleryController, animated: false, completion: nil)
+    }
+    
+    @objc private func closeView() {
+        self.dismiss(animated: false, completion: nil)
+        delegate?.didTapClose()
+    }
+    
+    func INERotationAnimation() {
+        INEIFrontImage.isHidden = false
+        UIView.transition(with: self.INEIFrontImage, duration: 1.0, options: .transitionFlipFromLeft, animations: {
+            self.INEIFrontImage.image = UIImage(named: "ineSampleReverso")
+        }) { didFinish in
+            if didFinish {
+                self.INEIFrontImage.isHidden = true
+            }
+        }
+    }
+    
+    func recognizerRunnerViewControllerDidFinishScanning(_ recognizerRunnerViewController: UIViewController & MBRecognizerRunnerViewController, state: MBRecognizerResultState) {
+        recognizerRunnerViewController.pauseScanning()
+        
+        
+        for recognizer in self.recognizerCollection.recognizerList where
+        recognizer.baseResult?.resultState == MBRecognizerResultState.valid {
+            
+            if recognizer is MBBlinkIdMultiSideRecognizer {
+                let blinkIdRecognizer = recognizer as? MBBlinkIdMultiSideRecognizer
+                guard let result = blinkIdRecognizer?.result else { return }
+                let customData = BlinkIDEntity.MicroBlinkIDResponseAdapter(microBlinkResult: result)
+                DispatchQueue.main.async {
+                    self.delegate?.didFinishScanning(customData: customData)
+                    self.dismiss(animated: false, completion: nil)
+                }
+            }
+        }
+    }
+    
+    func recognizerRunnerViewControllerDidFinishRecognition(ofFirstSide recognizerRunnerViewController: UIViewController & MBRecognizerRunnerViewController) {
+        DispatchQueue.main.async {
+            self.InstructionsLabel.text = "Centra y toma una foto del reverso de tu identificación oficial"
+            self.INERotationAnimation()
+            
+        }
+    }
+}
+
+extension CostumeBlinkIDDocumentsViewController: CostumeBlinkIDDocumentsProtocol {
+    func didTapClose() {
+        closeView()
+    }
+    func didFinishScanning(customData: BlinkIDEntity) {
+        delegate?.didFinishScanning(customData: customData)
+    }
+}
