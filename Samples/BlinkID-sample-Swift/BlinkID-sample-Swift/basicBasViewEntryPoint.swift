@@ -44,3 +44,7 @@ class basicBasViewEntryPoint: UIViewController {
     }
     
 }
+
+#Preview {
+    basicBasViewEntryPoint()
+}

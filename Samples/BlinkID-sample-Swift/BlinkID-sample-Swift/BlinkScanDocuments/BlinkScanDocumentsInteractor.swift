@@ -9,6 +9,4 @@ import Foundation
 
 class BlinkScanDocumentsInteractor: BlinkScanDocumentsInteractorProtocol {
     var presenter: BlinkScanDocumentsPresenterProtocol?
-    
-    
 }

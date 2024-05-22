@@ -6,10 +6,9 @@
 //  Copyright © 2024 Dino. All rights reserved.
 //
 
-enum scanState {
+enum ScanState {
     case front
     case back
-    
     func alertTitle() -> String {
         switch self {
         case .front:
@@ -18,7 +17,6 @@ enum scanState {
             return "Reverso"
         }
     }
-    
     func aletMessage() -> String {
         switch self {
         case .front:
@@ -28,29 +26,23 @@ enum scanState {
         }
     }
 }
-
 import UIKit
 import BlinkID
 import MobileCoreServices
 
-class BlinkIDDocumentsFromGalleyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+class BlinkIDDocumentsFromGalleyViewController: UIViewController,
+                                                    UIImagePickerControllerDelegate,
+                                                    UINavigationControllerDelegate {
     var delegate: CostumeBlinkIDDocumentsProtocol?
-    
     var didCancel: Bool = false
-    
     private var imagePicker = UIImagePickerController()
-    
     private let serialQueue = DispatchQueue(label: "com.microblink.DirectAPI-sample-swift")
     private var recognizerRunner: MBRecognizerRunner?
     private var blinkIdMultiSideRecognizer: MBBlinkIdMultiSideRecognizer?
-    
     override func viewDidLoad() {
         setupRecognizerRunner()
         setUpView()
-//        view.backgroundColor = .red
     }
-    
     private func setUpView() {
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -58,7 +50,6 @@ class BlinkIDDocumentsFromGalleyViewController: UIViewController, UIImagePickerC
         imagePicker.transitioningDelegate = self
         openImagePicker()
     }
-    
     private func setupRecognizerRunner() {
         var recognizers = [MBRecognizer]()
         blinkIdMultiSideRecognizer = MBBlinkIdMultiSideRecognizer()
@@ -69,27 +60,21 @@ class BlinkIDDocumentsFromGalleyViewController: UIViewController, UIImagePickerC
         recognizerRunner?.scanningRecognizerRunnerDelegate = self
         recognizerRunner?.metadataDelegates.firstSideFinishedRecognizerRunnerDelegate = self
     }
-    
     func openImagePicker(animated: Bool = true) {
         present(imagePicker, animated: animated, completion: nil)
     }
-    
     private func processImageRunner(_ originalImage: UIImage?) {
-        var image: MBImage? = nil
+        var image: MBImage?
         if let anImage = originalImage {
             image = MBImage(uiImage: anImage)
         }
         image?.cameraFrame = false
         image?.orientation = MBProcessingOrientation.left
-        
-        
         serialQueue.async(execute: {() -> Void in
             self.recognizerRunner?.processImage(image!)
         })
     }
-    
-    private func showStepAlert(type sate: scanState) {
-        
+    private func showStepAlert(type sate: ScanState) {
         let alert = UIAlertController(title: sate.alertTitle(), message: sate.aletMessage(), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             self.openImagePicker()
@@ -102,10 +87,9 @@ class BlinkIDDocumentsFromGalleyViewController: UIViewController, UIImagePickerC
         }
     }
 }
-
-
 extension BlinkIDDocumentsFromGalleyViewController {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             processImageRunner(pickedImage)
         }
@@ -116,35 +100,28 @@ extension BlinkIDDocumentsFromGalleyViewController {
         self.dismiss(animated: false, completion: nil)
     }
 }
-
 extension BlinkIDDocumentsFromGalleyViewController: MBFirstSideFinishedRecognizerRunnerDelegate {
-    
     func recognizerRunnerDidFinishRecognition(ofFirstSide recognizerRunner: MBRecognizerRunner) {
         DispatchQueue.main.async {
             self.showStepAlert(type: .back)
         }
     }
 }
-
 extension BlinkIDDocumentsFromGalleyViewController: MBScanningRecognizerRunnerDelegate {
-    
-    func recognizerRunner(_ recognizerRunner: MBRecognizerRunner, didFinishScanningWith state: MBRecognizerResultState) {
+    func recognizerRunner(_ recognizerRunner: MBRecognizerRunner,
+                          didFinishScanningWith state: MBRecognizerResultState) {
         DispatchQueue.main.async(execute: {() -> Void in
             if state != .valid {
                 self.showStepAlert(type: .back)
                 self.openImagePicker()
                 return
             }
-            
             guard let result = self.blinkIdMultiSideRecognizer?.result else { return }
-            let customData = BlinkIDEntity.MicroBlinkIDResponseAdapter(microBlinkResult: result)
-            
+            let customData = BlinkIDEntity.microBlinkIDResponseAdapter(microBlinkResult: result)
             self.delegate?.didFinishScanning(customData: customData)
-            
         })
     }
 }
-
 extension BlinkIDDocumentsFromGalleyViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         dismissAfter()

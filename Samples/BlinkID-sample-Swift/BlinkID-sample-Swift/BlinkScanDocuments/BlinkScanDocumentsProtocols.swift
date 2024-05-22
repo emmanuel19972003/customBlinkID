@@ -11,11 +11,10 @@ protocol BlinkScanDocumentsViewControllerProtocol {
     var presenter: BlinkScanDocumentsPresenterProtocol? { get set }
 }
 protocol BlinkScanDocumentsPresenterProtocol {
-    var interactor:BlinkScanDocumentsInteractorProtocol? { get set }
+    var interactor: BlinkScanDocumentsInteractorProtocol? { get set }
     var router: BlinkScanDocumentsRouterProtocol? { get set }
     func popScanDocumentsMicroBlink(with navigationController: UINavigationController)
     func goToDocumentsPreview(data: BlinkIDEntity, navigationController: UINavigationController)
-    
 }
 protocol BlinkScanDocumentsInteractorProtocol {
     var presenter: BlinkScanDocumentsPresenterProtocol? { get set }

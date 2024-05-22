@@ -28,7 +28,7 @@
 		67614A582BDFF70B005ACB51 /* BlinkScanDocumentsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67614A512BDFF70B005ACB51 /* BlinkScanDocumentsProtocols.swift */; };
 		67614A592BDFF70B005ACB51 /* BlinkScanDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67614A532BDFF70B005ACB51 /* BlinkScanDocumentsViewController.swift */; };
 		67614A5B2BDFF829005ACB51 /* basicBasViewEntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67614A5A2BDFF829005ACB51 /* basicBasViewEntryPoint.swift */; };
-		67614A5E2BE110C1005ACB51 /* resultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67614A5D2BE110C1005ACB51 /* resultView.swift */; };
+		67614A5E2BE110C1005ACB51 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67614A5D2BE110C1005ACB51 /* ResultView.swift */; };
 		67614A602BE14803005ACB51 /* CostumeBlinkIDDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67614A5F2BE14803005ACB51 /* CostumeBlinkIDDocumentsViewController.swift */; };
 		67C06A922BF39F400097A246 /* BlinkIDDocumentsFromGalleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C06A912BF39F400097A246 /* BlinkIDDocumentsFromGalleyViewController.swift */; };
 		7B65C038294B854500394548 /* BlinkID.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B65C036294B853D00394548 /* BlinkID.xcframework */; };
@@ -76,7 +76,7 @@
 		67614A512BDFF70B005ACB51 /* BlinkScanDocumentsProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlinkScanDocumentsProtocols.swift; sourceTree = "<group>"; };
 		67614A532BDFF70B005ACB51 /* BlinkScanDocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlinkScanDocumentsViewController.swift; sourceTree = "<group>"; };
 		67614A5A2BDFF829005ACB51 /* basicBasViewEntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = basicBasViewEntryPoint.swift; sourceTree = "<group>"; };
-		67614A5D2BE110C1005ACB51 /* resultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultView.swift; sourceTree = "<group>"; };
+		67614A5D2BE110C1005ACB51 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		67614A5F2BE14803005ACB51 /* CostumeBlinkIDDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumeBlinkIDDocumentsViewController.swift; sourceTree = "<group>"; };
 		67C06A912BF39F400097A246 /* BlinkIDDocumentsFromGalleyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkIDDocumentsFromGalleyViewController.swift; sourceTree = "<group>"; };
 		7B65C036294B853D00394548 /* BlinkID.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BlinkID.xcframework; path = ../../BlinkID.xcframework; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		67614A5C2BE110B2005ACB51 /* resutview */ = {
 			isa = PBXGroup;
 			children = (
-				67614A5D2BE110C1005ACB51 /* resultView.swift */,
+				67614A5D2BE110C1005ACB51 /* ResultView.swift */,
 			);
 			path = resutview;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 				3155321E1D9418DA001B9440 /* ViewController.swift in Sources */,
 				670F0E422BCD770500912DC4 /* customViewBAZ.swift in Sources */,
 				67614A592BDFF70B005ACB51 /* BlinkScanDocumentsViewController.swift in Sources */,
-				67614A5E2BE110C1005ACB51 /* resultView.swift in Sources */,
+				67614A5E2BE110C1005ACB51 /* ResultView.swift in Sources */,
 				67614A572BDFF70B005ACB51 /* BlinkScanDocumentsPresenter.swift in Sources */,
 				67614A552BDFF70B005ACB51 /* BlinkScanDocumentsInteractor.swift in Sources */,
 				3139C8951C294F2C005AC32C /* AppDelegate.swift in Sources */,
@@ -462,7 +462,7 @@
 				DEVELOPMENT_TEAM = 495737228M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "BlinkID-sample-Swift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -482,7 +482,7 @@
 				DEVELOPMENT_TEAM = 495737228M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "BlinkID-sample-Swift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

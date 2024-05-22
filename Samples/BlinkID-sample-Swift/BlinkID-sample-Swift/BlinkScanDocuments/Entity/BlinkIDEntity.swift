@@ -19,11 +19,9 @@ struct BlinkIDEntity {
     let dateOfIssue: String?
     let dateOfExpiry: String?
     let address: String?
-    let BackINE: UIImage?
-    let FrontINE: UIImage?
-    
-    
-    static func MicroBlinkIDResponseAdapter(microBlinkResult result: MBBlinkIdMultiSideRecognizerResult) -> BlinkIDEntity{
+    let backINE: UIImage?
+    let frontINE: UIImage?
+    static func microBlinkIDResponseAdapter(microBlinkResult result: MBBlinkIdMultiSideRecognizerResult) -> BlinkIDEntity{
         return BlinkIDEntity(fullName: result.fullName?.description,
                              firstName: result.firstName?.description,
                              fathersName: result.fathersName?.description,
@@ -34,8 +32,8 @@ struct BlinkIDEntity {
                              dateOfIssue: result.dateOfIssue?.description,
                              dateOfExpiry: result.dateOfExpiry?.description,
                              address: result.address?.description,
-                             BackINE: result.fullDocumentBackImage?.image,
-                             FrontINE: result.fullDocumentFrontImage?.image
+                             backINE: result.fullDocumentBackImage?.image,
+                             frontINE: result.fullDocumentFrontImage?.image
         )
     }
 }
