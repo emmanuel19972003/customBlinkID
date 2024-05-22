@@ -9,7 +9,7 @@ import UIKit
 
 class BlinkScanDocumentsRouter: BlinkScanDocumentsRouterProtocol {
     
-    static func getBlinkIdView(viewType: typeOfBlinkIDView = .custom) -> UIViewController {
+    static func getBlinkIdView(viewType: typeOfBlinkIDView = .native) -> UIViewController {
         let viewController = BlinkScanDocumentsViewController()
         let presenter = BlinkScanDocumentsPresenter()
         let interactor = BlinkScanDocumentsInteractor()

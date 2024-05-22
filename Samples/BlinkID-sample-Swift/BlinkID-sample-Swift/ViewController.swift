@@ -77,33 +77,16 @@ class ViewController: UIViewController {
     
     
     @IBAction func newView(_ sender: Any) {
-        
-//        let scannerController = customViewBAZ()
-//        self.blinkIdRecognizer = MBBlinkIdMultiSideRecognizer()
-//        
-//        let recognizerList = [self.blinkIdRecognizer!]
-//        let recognizerCollection: MBRecognizerCollection = MBRecognizerCollection(recognizers: recognizerList)
-//        
-//        scannerController.reconfigureRecognizers(recognizerCollection)
-//        
-//        guard let recognizerRunneViewController: UIViewController =
-//            MBViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: scannerController) else {
-//                return
-//        }
         let basBlinkIdEntryPoint = basicBasViewEntryPoint()
 
         basBlinkIdEntryPoint.modalPresentationStyle = .fullScreen
         let navigationController = UINavigationController(rootViewController: basBlinkIdEntryPoint)
         navigationController.modalPresentationStyle = .fullScreen
 
-        /** Present the recognizer runner view controller. You can use other presentation methods as well (instead of presentViewController) */
         self.present(navigationController, animated: true, completion: nil)
-        
-
-//        viewController.modalPresentationStyle = .fullScreen
-//        
-//        self.present(viewController, animated: true, completion: nil)
     }
+    
+    
     
 }
 

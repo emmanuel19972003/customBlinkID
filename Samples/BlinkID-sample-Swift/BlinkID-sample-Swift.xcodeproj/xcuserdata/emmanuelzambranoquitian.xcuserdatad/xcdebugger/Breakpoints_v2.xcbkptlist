@@ -14,8 +14,8 @@
             filePath = "BlinkID-sample-Swift/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "blinkIdOverlayViewControllerDidFinishScanning(_:state:)"
             landmarkType = "7">
             <Locations>
@@ -64,23 +64,67 @@
                   endingLineNumber = "129"
                   offsetFromSymbolStart = "2500">
                </Location>
+               <Location
+                  uuid = "59AD0BE3-3D2E-4CA0-B868-5BF67DD1577C - 47ed5751298c179c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BlinkID_sample_Swift.ViewController.blinkIdOverlayViewControllerDidFinishScanning(_: __C.MBBlinkIdOverlayViewController, state: __C.MBRecognizerResultState) -&gt; ()"
+                  moduleName = "BlinkID-sample-Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmanuelzambranoquitian/Desktop/customBlinkID/Samples/BlinkID-sample-Swift/BlinkID-sample-Swift/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "2540">
+               </Location>
+               <Location
+                  uuid = "59AD0BE3-3D2E-4CA0-B868-5BF67DD1577C - a2989c6ada6e53f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Value Promoted from Box, Arg[1] = Value Promoted from Box&gt; of closure #1 @Swift.MainActor () -&gt; () in BlinkID_sample_Swift.ViewController.blinkIdOverlayViewControllerDidFinishScanning(_: __C.MBBlinkIdOverlayViewController, state: __C.MBRecognizerResultState) -&gt; ()"
+                  moduleName = "BlinkID-sample-Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmanuelzambranoquitian/Desktop/customBlinkID/Samples/BlinkID-sample-Swift/BlinkID-sample-Swift/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "59AD0BE3-3D2E-4CA0-B868-5BF67DD1577C - 47ed5751298c11eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BlinkID_sample_Swift.ViewController.blinkIdOverlayViewControllerDidFinishScanning(_: __C.MBBlinkIdOverlayViewController, state: __C.MBRecognizerResultState) -&gt; ()"
+                  moduleName = "BlinkID-sample-Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmanuelzambranoquitian/Desktop/customBlinkID/Samples/BlinkID-sample-Swift/BlinkID-sample-Swift/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "2540">
+               </Location>
+               <Location
+                  uuid = "59AD0BE3-3D2E-4CA0-B868-5BF67DD1577C - a2989c6ada6e55c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Value Promoted from Box, Arg[1] = Value Promoted from Box&gt; of closure #1 @Swift.MainActor () -&gt; () in BlinkID_sample_Swift.ViewController.blinkIdOverlayViewControllerDidFinishScanning(_: __C.MBBlinkIdOverlayViewController, state: __C.MBRecognizerResultState) -&gt; ()"
+                  moduleName = "BlinkID-sample-Swift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmanuelzambranoquitian/Desktop/customBlinkID/Samples/BlinkID-sample-Swift/BlinkID-sample-Swift/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "116">
+               </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "43D14805-ED70-49C1-A27B-2F392FFF4E12"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BlinkID-sample-Swift/BlinkScanDocuments/BlinkScanDocumentsPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "goToDocumentsPreview(data:navigationController:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
